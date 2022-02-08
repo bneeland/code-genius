@@ -8,6 +8,13 @@
   margin-bottom: 2em;
 }
 
+.custom-code-text h2 {
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 2em;
+}
+
 .custom-code-text p {
   margin-left: 2em;
   margin-bottom: 1em;
