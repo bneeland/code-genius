@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTimes} from '@fortawesome/free-solid-svg-icons';
 
 function Fragment(props) {
   if (props.isActive) {
@@ -36,7 +34,7 @@ function Annotation(props) {
           onClick={props.onClick}
           className="px-2 text-gray-500 p-1 hover:text-gray-800"
         >
-          <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>
+          ×
         </button>
       </div>
     </div>
@@ -47,9 +45,9 @@ function App() {
   const [activeAnnotation, setActiveAnnotation] = useState(null);
 
   const handleActiveAnnotationToggle = (id) => {
-    if (activeAnnotation == null) {
+    if (activeAnnotation === null) {
       setActiveAnnotation(id);
-    } else if (activeAnnotation == id) {
+    } else if (activeAnnotation === id) {
       setActiveAnnotation(null);
     } else {
       setActiveAnnotation(id);
