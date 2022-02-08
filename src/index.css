@@ -19,3 +19,7 @@
   margin-left: 2em;
   margin-bottom: 1em;
 }
+
+.custom-code-text sub {
+  z-index: -1;
+}

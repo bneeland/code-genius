@@ -3,14 +3,25 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
 
 function Fragment(props) {
-  return (
-    <span
-      onClick={props.onClick}
-      className="bg-gray-200 py-0.5 px-0.5 rounded cursor-pointer hover:bg-sky-500 hover:text-white"
-    >
-      {props.text}
-    </span>
-  );
+  if (props.isActive) {
+    return (
+      <span
+        onClick={props.onClick}
+        className="bg-sky-500 text-white py-0.5 px-0.5 rounded cursor-pointer"
+      >
+        {props.text}
+      </span>
+    );
+  } else {
+    return (
+      <span
+        onClick={props.onClick}
+        className="bg-gray-200 py-0.5 px-0.5 rounded cursor-pointer hover:bg-sky-500 hover:text-white"
+      >
+        {props.text}
+      </span>
+    );
+  }
 }
 
 function Annotation(props) {
@@ -23,7 +34,7 @@ function Annotation(props) {
       <div className="text-right">
         <button
           onClick={props.onClick}
-          className="rounded-full py-0 my-0 text-gray-500 p-1 hover:text-gray-800"
+          className="px-2 text-gray-500 p-1 hover:text-gray-800"
         >
           <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>
         </button>
@@ -35,6 +46,16 @@ function Annotation(props) {
 function App() {
   const [activeAnnotation, setActiveAnnotation] = useState(null);
 
+  const handleActiveAnnotationToggle = (annotationId) => {
+    if (activeAnnotation == null) {
+      setActiveAnnotation(annotationId);
+    } else if (activeAnnotation == annotationId) {
+      setActiveAnnotation(null);
+    } else {
+      setActiveAnnotation(annotationId);
+    }
+  }
+
   return (
     <div>
       <div className="sticky top-0 p-4 bg-white border-b border-b-gray-300 drop-shadow">
@@ -45,8 +66,8 @@ function App() {
           <div className="col-span-7 custom-code-text text-gray-800">
             <h1>5. Systems and Equipment</h1>
             <p><b>5.1 Ventilation Air Distribution.</b> Ventilating systems shall be designed in accordance with the requirements of the following subsections.</p>
-            <p><b>5.1.1 Designing for <Fragment text="Air Balancing" onClick={() => setActiveAnnotation(0)} />.</b> Ventilation air distribution systems shall be provided that allow field verification of <Fragment text="outdoor air intake flow" onClick={() => setActiveAnnotation(1)} /> (V<sub>ot</sub>) during operation.</p>
-            <p><b>5.1.1.1 Designing for Varying Loads and Operating Conditions.</b> The ventilation air distribution system for <Fragment text="variable air volume (VAV)" onClick={() => setActiveAnnotation(2)} /> and multispeed constant air volume (CAV) applications shall be provided with means to adjust the system to achieve at least the minimum ventilation airflow as required by Section 6 under any load condition or dynamic reset condition.</p>
+            <p><b>5.1.1 Designing for <Fragment text="Air Balancing" isActive={activeAnnotation === 0} onClick={() => handleActiveAnnotationToggle(0)} />.</b> Ventilation air distribution systems shall be provided that allow field verification of <Fragment text="outdoor air intake flow" isActive={activeAnnotation === 1} onClick={() => handleActiveAnnotationToggle(1)} /> (V<sub>ot</sub>) during operation.</p>
+            <p><b>5.1.1.1 Designing for Varying Loads and Operating Conditions.</b> The ventilation air distribution system for <Fragment text="variable air volume (VAV)" isActive={activeAnnotation === 2} onClick={() => handleActiveAnnotationToggle(2)} /> and multispeed constant air volume (CAV) applications shall be provided with means to adjust the system to achieve at least the minimum ventilation airflow as required by Section 6 under any load condition or dynamic reset condition.</p>
             <p><b>5.1.2 Plenum Systems.</b> When the ceiling or floor plenum is used both to recirculate return air and to distribute ventilation air to ceiling-mounted or floor-mounted terminal units, the system shall be engineered such that each space is provided with its required minimum ventilation airflow.<br /><b><i>Informative Note:</i></b> Systems with direct connection of ventilation air ducts to terminal units, for example, comply with this requirement.</p>
             <p><b>5.1.3 Documentation.</b> The design documents shall specify minimum requirements for air balance testing or reference applicable national standards for measuring and balancing airflow. The design documentation shall state assumptions that were made in the design with respect to ventilation rates and air distribution.</p>
             <h2>5.2 Exhaust Duct Location</h2>
