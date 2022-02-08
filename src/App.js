@@ -1,23 +1,15 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
 function App() {
+  const [activeAnnotation, setActiveAnnotation] = useState();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <span onClick={() => setActiveAnnotation(0)}>Zeroth fragment</span>
+      <span onClick={() => setActiveAnnotation(1)}>First fragment</span>
+      {activeAnnotation === 0 && <div>This is some annotation text for the zeroth annotation component.</div>}
+      {activeAnnotation === 1 && <div>This is text in the first annotation component.</div>}
     </div>
   );
 }
