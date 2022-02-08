@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
-import './App.css';
 
 function App() {
   const [activeAnnotation, setActiveAnnotation] = useState();
 
   return (
-    <div className="App">
+    <div class="container mx-auto">
+      <h1 className="text-3xl font-bold">Code Genius</h1>
       <span onClick={() => setActiveAnnotation(0)}>Zeroth fragment</span>
       <span onClick={() => setActiveAnnotation(1)}>First fragment</span>
       {activeAnnotation === 0 && <div>This is some annotation text for the zeroth annotation component.</div>}
