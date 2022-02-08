@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.custom-code-text h1 {
+  font-weight: bold;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.custom-code-text p {
+  margin-left: 2em;
+  margin-bottom: 1em;
+}
