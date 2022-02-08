@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTimes} from '@fortawesome/free-solid-svg-icons';
 
 function Fragment(props) {
   return (
@@ -13,13 +15,13 @@ function Fragment(props) {
 
 function Annotation(props) {
   return (
-    <div className="bg-gray-200 p-4">
+    <div className="bg-gray-200 text-gray-800 p-4">
       {props.text}
       <button
         onClick={props.onClick}
-        className="rounded-full text-black p-1 hover:bg-black hover:text-white"
+        className="rounded-full w-7 h-7 text-gray-500 p-1 hover:text-gray-800"
       >
-        x
+        <FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>
       </button>
     </div>
   )
